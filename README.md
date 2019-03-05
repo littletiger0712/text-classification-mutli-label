@@ -1,7 +1,7 @@
 # Mutli Label Text Classification
 
-使用卷积神经网络、循环神经网络、fasttext进行中文文本分类。
-源码修改自[text-classification-cnn-rnn](https://github.com/gaussic/text-classification-cnn-rnn)，增加多标签预测功能，添加Fasttext模型的训练和预测模型。
+使用卷积神经网络、循环神经网络、fasttext进行中文文本分类。源码修改自[text-classification-cnn-rnn](https://github.com/gaussic/text-classification-cnn-rnn)，增加多标签预测功能，添加Fasttext模型的训练和预测模型。
+
 本文是基于TensorFlow在cail数据集进行的训练和测试，使用了字符级CNN和RNN对中文文本进行分类，达到了较好的效果。
 
 ## 环境
@@ -47,19 +47,13 @@
 模型也可以使用自己的数据进行训练和预测，数据集需要被整体为Fasttext进行多标签预测需要的格式，格式如下：
 W1 W2 W3 __label__l1 __label__l2
 其中W1 W2...为使用jieba分词后的句子，词以空格分割，__label__l为句子的标签，可以有多个标签，以空格分割。
-本次训练使用了其中的202个分类，一共约43W条数据。
+本次训练使用了其中的202个分类，一共约20W条数据。
 
+数据集大小详细如下：
 
-
-数据集划分如下：
-
-- 训练集: 5000*10
-- 验证集: 500*10
-- 测试集: 1000*10
-
-- cnews.train.txt: 训练集(50000条)
-- cnews.val.txt: 验证集(5000条)
-- cnews.test.txt: 测试集(10000条)
+- 训练集: 154592
+- 验证集: 17131
+- 测试集: 32508
 
 ## 预处理
 
@@ -152,4 +146,5 @@ class TRNNConfig(object):
 ## References：
 
 [Convolutional Neural Networks for Sentence Classification](https://arxiv.org/abs/1408.5882)
+
 [Character-level Convolutional Networks for Text Classification](https://arxiv.org/abs/1509.01626)

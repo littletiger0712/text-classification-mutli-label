@@ -13,7 +13,7 @@ from sklearn import metrics
 from metric import mutli_file_test
 
 from rnn_model import TRNNConfig, TextRNN
-from data_loader.cail_loader import read_vocab, read_category, batch_iter, process_file, build_vocab
+from data_loader import read_vocab, read_category, batch_iter, process_file, build_vocab
 from config import *
 
 
@@ -180,7 +180,7 @@ if __name__ == '__main__':
     config = TRNNConfig()
     if not os.path.exists(vocab_dir):  # 如果不存在词汇表，重建
         build_vocab(train_dir, vocab_dir, config.vocab_size)
-    categories, cat_to_id = read_category()
+    categories, cat_to_id = read_category(vocab_dir)
     words, word_to_id = read_vocab(vocab_dir)
     config.vocab_size = len(words)
     model = TextRNN(config)

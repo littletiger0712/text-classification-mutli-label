@@ -79,7 +79,7 @@ class TextRNN(object):
             # 损失函数，交叉熵
             # cross_entropy = tf.nn.softmax_cross_entropy_with_logits(logits=self.logits, labels=self.input_y)
             mutli_label_loss = tf.nn.sigmoid_cross_entropy_with_logits(logits=self.logits, labels=self.input_y)
-            self.loss = tf.reduce_mean(cross_entropy)
+            self.loss = tf.reduce_mean(mutli_label_loss)
             # 优化器
             self.optim = tf.train.AdamOptimizer(learning_rate=self.config.learning_rate).minimize(self.loss)
 
