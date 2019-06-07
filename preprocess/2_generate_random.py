@@ -15,12 +15,17 @@ process_name = ['train']
 generate_cnt = 1
 
 def function():
+
+    random_dir = os.path.join(data_dir, 'delete')
+    if not os.path.isdir(random_dir):
+        os.mkdir(random_dir)
+    
     for name in process_name:
         for cnt in range(generate_cnt):
             srcfile = open(os.path.join(
                 data_dir, 'data_{}_{}.json'.format(name, src)))
             targetfile = open(os.path.join(
-                data_dir, 'data_{}_{}_{}.json'.format(name, target, cnt)), 'w')
+                random_dir, 'data_{}_{}_{}.json'.format(name, target, cnt)), 'w')
     
             for line in srcfile:
                 rawx = line.split('。')
