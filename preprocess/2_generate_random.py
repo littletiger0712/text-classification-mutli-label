@@ -28,7 +28,7 @@ def function():
                 random_dir, 'data_{}_{}_{}.json'.format(name, target, cnt)), 'w')
     
             for line in srcfile:
-                rawx = line.split('。')
+                rawx = line[:-2].split('。')
                 random.shuffle(rawx)
                 targetfile.write('。'.join(rawx)+'\n')
             srcfile.close()

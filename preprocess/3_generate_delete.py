@@ -27,7 +27,7 @@ def function():
                 random_dir, 'data_{}_{}_{}.json'.format(name, target, cnt)), 'w')
             
             for line in srcfile:
-                rawx = line.split('。')
+                rawx = line[:-2].split('。')
 
                 for _i in range(delete_cnt):
                     if delete_cnt >= len(rawx):

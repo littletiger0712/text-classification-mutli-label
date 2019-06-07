@@ -42,7 +42,7 @@ def function():
         for i in range(len(labels)):
             labels[i].sort()
         data_dir = os.path.join(data_dir, 'data_{}_{}.json'.format(name, src))
-        datas = [line.split('。') for line in open(data_dir)]
+        datas = [line[:-2].split('。') for line in open(data_dir)]
 
         for cnt in range(generate_cnt):
             targetfile = open(os.path.join(
@@ -51,6 +51,7 @@ def function():
             for rawx, label in zip(datas, labels):
                 
                 for _i in range(insert_cnt):
+                    
                     sentence = sentence_sample(datas, labels, label)
                     loc = random.randrange(0, len(rawx), 1)
                     rawx.insert(loc, sentence)
