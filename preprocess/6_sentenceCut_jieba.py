@@ -8,7 +8,7 @@ import jieba
 from config import base_dir
 
 data_dir = os.path.join(base_dir, 'data')
-src = 'content'
+src = 'combine'
 target = 'jieba'
 
 process_name = ['train', 'valid', 'test']
