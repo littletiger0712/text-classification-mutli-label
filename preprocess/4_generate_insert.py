@@ -4,8 +4,6 @@ import os
 import random
 import sys
 sys.path.append('../')
-import jieba
-
 from config import base_dir
 
 data_dir = os.path.join(base_dir, 'data')
@@ -33,6 +31,7 @@ def sentence_sample(datas, labels, target_label):
     return random.choice(datas[idx])    
 
 def function():
+    global data_dir
     random_dir = os.path.join(data_dir, 'insert')
     if not os.path.isdir(random_dir):
         os.mkdir(random_dir)
