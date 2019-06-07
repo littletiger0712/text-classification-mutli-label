@@ -16,7 +16,7 @@ generate_cnt = 1
 
 def function():
 
-    random_dir = os.path.join(data_dir, 'delete')
+    random_dir = os.path.join(data_dir, 'random')
     if not os.path.isdir(random_dir):
         os.mkdir(random_dir)
     
