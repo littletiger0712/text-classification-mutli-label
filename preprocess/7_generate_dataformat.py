@@ -23,6 +23,7 @@ def function():
 
         for x_cut, label in zip(content, lables):
             x_cut = json.loads(x_cut)
+            x_cut[-1] = x_cut[-1][:-1]
             label = json.loads(label)
             targetfile.write('{} __label__{}\n'.format(' '.join(x_cut), ' __label__'.join(label)))
         content.close()
