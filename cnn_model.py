@@ -64,7 +64,7 @@ class TextCNN(object):
             one = tf.ones_like(self.logits)
             zero = tf.zeros_like(self.logits)
             self.y_pred_cls = tf.where(self.y_pred_cls <0.5, x=zero, y=one)
-            # self.y_pred_cls = tf.argmax(tf.nn.softmax(self.logits), 1)  # 预测类别
+            self.y_pred_cls_one = tf.argmax(tf.nn.softmax(self.logits), 1)  # 预测类别
 
         with tf.name_scope("optimize"):
             # 损失函数，交叉熵
@@ -77,8 +77,8 @@ class TextCNN(object):
         with tf.name_scope("accuracy"):
             # 准确率
             correct_pred = tf.equal(self.input_y, self.y_pred_cls)
-            correct_pred = tf.reduce_sum(correct_pred, 1)
-            one = tf.ones_like(self.logits)
-            zero = tf.zeros_like(self.logits)
+            correct_pred = tf.reduce_sum(tf.cast(correct_pred, tf.float32), 1)
+            one = tf.ones_like(self.y_pred_cls_one)
+            zero = tf.zeros_like(self.y_pred_cls_one)
             correct_pred = tf.where(self.y_pred_cls < 0.9, x=zero, y=one)
             self.acc = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
