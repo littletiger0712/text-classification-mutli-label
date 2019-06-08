@@ -186,4 +186,4 @@ if __name__ == '__main__':
     if sys.argv[1] == 'train':
         train()
     else:
-        test(test_dir))        
+        test(test_dir)
