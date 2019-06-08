@@ -73,7 +73,8 @@ class TextRNN(object):
 
             # 分类器
             self.logits = tf.layers.dense(fc, self.config.num_classes, name='fc2')
-            self.y_pred_cls = tf.argmax(tf.nn.softmax(self.logits), 1)  # 预测类别
+            self.y_pred_cls = tf.sigmoid(self.logits)
+            # self.y_pred_cls = tf.argmax(tf.nn.softmax(self.logits), 1)  # 预测类别
 
         with tf.name_scope("optimize"):
             # 损失函数，交叉熵
@@ -85,5 +86,8 @@ class TextRNN(object):
 
         with tf.name_scope("accuracy"):
             # 准确率
-            correct_pred = tf.equal(tf.argmax(self.input_y, 1), self.y_pred_cls)
+            one = tf.ones_like(self.input_y)
+            zero = tf.zeros_like(self.input_y)
+            label = tf.where(self.y_pred_cls, x=zero, y=one)
+            correct_pred = tf.equal(self.input_y, label)
             self.acc = tf.reduce_mean(tf.cast(correct_pred, tf.float32))

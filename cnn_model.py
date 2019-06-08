@@ -64,6 +64,7 @@ class TextCNN(object):
             one = tf.ones_like(self.logits)
             zero = tf.zeros_like(self.logits)
             self.y_pred_cls = tf.where(self.y_pred_cls <0.5, x=zero, y=one)
+            # self.y_pred_cls = tf.argmax(tf.nn.softmax(self.logits), 1)  # 预测类别
 
         with tf.name_scope("optimize"):
             # 损失函数，交叉熵
