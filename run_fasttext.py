@@ -40,4 +40,4 @@ if __name__ == '__main__':
     if sys.argv[1] == 'train':
         train()
     else:
-        mutli_file_test(test, result_path)
+        test(test_dir)
