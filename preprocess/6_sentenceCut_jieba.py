@@ -8,10 +8,10 @@ import jieba
 from config import base_dir
 
 data_dir = os.path.join(base_dir, 'data')
-src = 'combine'
+src = 'content'
 target = 'jieba'
 
-process_name = ['train', 'valid', 'test']
+process_name = ['valid', 'test']
 
 def function():
     stopwords = list(map(lambda x: x[:-1], open(os.path.join(data_dir, 'stop_words.txt'))))
