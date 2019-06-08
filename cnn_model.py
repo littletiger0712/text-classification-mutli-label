@@ -60,11 +60,13 @@ class TextCNN(object):
 
             # 分类器
             self.logits = tf.layers.dense(fc, self.config.num_classes, name='fc2')
-            self.y_pred_cls = tf.argmax(tf.nn.softmax(self.logits), 1)  # 预测类别
+            self.y_pred_cls = tf.sigmoid(self.logits)
+            one = tf.ones_like(self.logits)
+            zero = tf.zeros_like(self.logits)
+            self.y_pred_cls = tf.where(self.y_pred_cls <0.5, x=zero, y=one)
 
         with tf.name_scope("optimize"):
             # 损失函数，交叉熵
-            # cross_entropy = tf.nn.softmax_cross_entropy_with_logits(logits=self.logits, labels=self.input_y)
             mutli_label_loss = tf.nn.sigmoid_cross_entropy_with_logits(logits=self.logits, labels=self.input_y)
 
             self.loss = tf.reduce_mean(mutli_label_loss)
@@ -73,5 +75,5 @@ class TextCNN(object):
 
         with tf.name_scope("accuracy"):
             # 准确率
-            correct_pred = tf.equal(tf.argmax(self.input_y, 1), self.y_pred_cls)
+            correct_pred = tf.equal(self.input_y, self.y_pred_cls)
             self.acc = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
