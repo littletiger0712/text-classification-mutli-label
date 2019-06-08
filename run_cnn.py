@@ -124,13 +124,13 @@ def train():
             session.run(model.optim, feed_dict=feed_dict)  # 运行优化
             total_batch += 1
 
-            if total_batch - last_improved > require_improvement:
-                # 验证集正确率长期不提升，提前结束训练
-                print("No optimization for a long time, auto-stopping...")
-                flag = True
-                break  # 跳出循环
-        if flag:  # 同上
-            break
+            # if total_batch - last_improved > require_improvement:
+            #     # 验证集正确率长期不提升，提前结束训练
+            #     print("No optimization for a long time, auto-stopping...")
+            #     flag = True
+            #     break  # 跳出循环
+        # if flag:  # 同上
+        #     break
 
 
 def test(test_dir):
