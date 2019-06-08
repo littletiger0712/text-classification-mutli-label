@@ -17,7 +17,7 @@ class TCNNConfig(object):
     hidden_dim = 128  # 全连接层神经元
 
     dropout_keep_prob = 0.5  # dropout保留比例
-    learning_rate = 1e-3  # 学习率
+    learning_rate = 1e-4  # 学习率
 
     batch_size = 64  # 每批训练大小
     num_epochs = 50  # 总迭代轮次
