@@ -80,5 +80,5 @@ class TextCNN(object):
             correct_pred = tf.reduce_sum(tf.cast(correct_pred, tf.float32), 1)
             one = tf.ones_like(self.y_pred_cls_one)
             zero = tf.zeros_like(self.y_pred_cls_one)
-            correct_pred = tf.where(correct_pred < 0.9, x=zero, y=one)
+            correct_pred = tf.where(correct_pred < 202, x=zero, y=one)
             self.acc = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
