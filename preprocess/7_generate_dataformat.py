@@ -5,16 +5,13 @@ import random
 import sys
 sys.path.append('../')
 
-from config import base_dir, test_dirs
+from config import base_dir
 
 data_dir = os.path.join(base_dir, 'data')
 src = 'jieba'
 target = 'fasttext'
-test_dir = os.path.join(data_dir, 'test')
-if not os.path.isdir(test_dir):
-    os.mkdir(test_dir)
 
-generate_cnt = 10
+
 process_name = ['train', 'valid', 'test']
 
 def function():
